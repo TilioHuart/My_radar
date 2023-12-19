@@ -21,12 +21,14 @@
     #include "sys/stat.h"
 
 typedef struct radar {
+    char **info;
     sfRenderWindow *window;
+    plane_t plane;
 } radar_t;
 
 int case_of_env(char **env, int *env_f);
-int launcher(char **av);
-int recup_information(char **av);
+int launcher(char **info);
+char **recup_information(char **av);
 char *read_info(char **av);
 
 #endif

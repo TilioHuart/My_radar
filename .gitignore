@@ -1,1 +1,5 @@
 .idea
+fly_information.rdr
+coding-style-reports.log
+my_radar
+*.o

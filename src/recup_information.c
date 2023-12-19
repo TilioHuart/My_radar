@@ -7,12 +7,11 @@
 
 #include "radar.h"
 
-int recup_information(char **av)
+char **recup_information(char **av)
 {
     char **array = NULL;
     char *map = read_info(av);
 
     array = my_str_to_word_array(map);
-    my_show_word_array(array);
-    return 0;
+    return array;
 }

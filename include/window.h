@@ -8,8 +8,11 @@
 #ifndef WINDOW_H_
     #define WINDOW_H_
 
-typedef struct window {
-    sfRenderWindow *window;
-} window_t;
+typedef struct plane {
+    sfVector2f pos_i;
+    sfVector2f pos_f;
+    int speed;
+    int delete;
+} plane_t;
 
 #endif
