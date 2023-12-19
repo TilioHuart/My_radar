@@ -16,6 +16,14 @@ int launcher(char **info)
     radar->window = sfRenderWindow_create(VideoMode, "My_Radar",
         sfDefaultStyle, NULL);
     radar->info = info;
-    sfRenderWindow_setFramerateLimit(radar->window, 120);
+    printf("arr = %s\n", radar->info[4]);
+    my_show_word_array(radar->info);
+    while (sfRenderWindow_isOpen(radar->window))
+        analyse_event(radar);
+    sfRenderWindow_close(radar->window);
+    send_information(radar);
+    free(radar->info);
+    sfRenderWindow_destroy(radar->window);
+    free(radar);
     return 0;
 }
