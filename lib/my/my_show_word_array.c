@@ -16,7 +16,7 @@ int my_show_word_array(char *const *tab)
 
     if (tab == NULL)
         return 84;
-    for (int y = 0; tab[y + 1] != NULL; y += 1) {
+    for (int y = 0; tab[y] != NULL; y += 1) {
         for (int i = 0; tab[y][i] != '\0'; i += 1) {
             my_putchar(tab[y][i]);
         }

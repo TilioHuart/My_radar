@@ -64,7 +64,7 @@ static void loop(const char *str, char **arr, int *a, int *y)
             *a = 0;
         }
     }
-    arr[*y + 1] = NULL;
+    arr[*y] = NULL;
 }
 
 char **my_str_to_word_array(const char *str)
