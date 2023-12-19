@@ -13,7 +13,8 @@ int launcher(char **info)
     sfVideoMode VideoMode = {1920, 1080, 32};
 
     radar = malloc(sizeof(radar_t));
-    radar->window = sfRenderWindow_create(VideoMode, "My_Radar", sfDefaultStyle, NULL);
+    radar->window = sfRenderWindow_create(VideoMode, "My_Radar",
+        sfDefaultStyle, NULL);
     radar->info = info;
     sfRenderWindow_setFramerateLimit(radar->window, 120);
     return 0;
