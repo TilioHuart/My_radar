@@ -16,7 +16,6 @@ int launcher(char **info)
     radar->window = sfRenderWindow_create(VideoMode, "My_Radar",
         sfDefaultStyle, NULL);
     radar->info = info;
-    printf("arr = %s\n", radar->info[4]);
     my_show_word_array(radar->info);
     while (sfRenderWindow_isOpen(radar->window))
         analyse_event(radar);

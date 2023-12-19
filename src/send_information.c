@@ -119,7 +119,7 @@ int send_information(radar_t *radar)
     nb_radar = count_radar(radar);
     info_line = my_info_to_array(radar->info[0]);
     my_show_word_array(info_line);
-    while (i != 7) {
+    while (info_line[i] != NULL) {
         free(info_line[i]);
         i += 1;
     }
