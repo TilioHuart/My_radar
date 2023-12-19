@@ -13,5 +13,6 @@ char **recup_information(char **av)
     char *map = read_info(av);
 
     array = my_str_to_word_array(map);
+    free(map);
     return array;
 }
