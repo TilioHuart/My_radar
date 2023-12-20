@@ -17,6 +17,15 @@ static int ismap(char c)
     }
 }
 
+static int size_of_arr(const char *str, int count)
+{
+    for (int i = 0; str[i] != '\0'; i += 1) {
+        if (str[i] == ' ' || str[i] == '\0')
+            count += 1;
+    }
+    return count;
+}
+
 static char **len_char(const char *str)
 {
     int a = 0;
@@ -24,16 +33,13 @@ static char **len_char(const char *str)
     int count = 0;
     char **arr = NULL;
 
-    for (int i = 0; str[i] != '\0'; i += 1) {
-        if (str[i] == ' ' || str[i] == '\0')
-            count += 1;
-    }
+    count = size_of_arr(str, count);
     arr = malloc(sizeof(char *) * (count + 10));
     for (int i = 0; str[i] != '\0'; i += 1) {
         if (ismap(str[i]) == 0 && ismap(str[i + 1]) == 0)
             len += 1;
-        else if ((ismap(str[i]) == 0 && str[i += 1] == ' ') ||
-                (ismap(str[i]) == 0 && str[i += 1] == '\0')) {
+        else if ((ismap(str[i]) == 0 && str[i + 1] == ' ') ||
+                (ismap(str[i]) == 0 && str[i + 1] == '\0')) {
             len += 1;
             arr[a] = malloc(sizeof(char *) * len);
             len = 0;
