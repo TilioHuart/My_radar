@@ -39,7 +39,7 @@ static char **len_char(const char *str)
             len = 0;
             a += 1;
         }
-        arr[a] = malloc(sizeof(char *) + 2);
+        arr[a] = malloc(sizeof(char *) * 2);
     }
     return arr;
 }
@@ -117,11 +117,18 @@ int send_information(radar_t *radar)
 
     nb_plane = count_plane(radar);
     nb_radar = count_radar(radar);
-    info_line = my_info_to_array(radar->info[0]);
-    my_show_word_array(info_line);
-    while (info_line[i] != NULL) {
-        free(info_line[i]);
-        i += 1;
+    radar->plane = malloc(sizeof(plane_t *));
+    for (int y = 0; radar->info[y] != NULL; y += 1) {
+        info_line = my_info_to_array(radar->info[y]);
+        if (info_line[0][0] == 'A')
+            setup_plane(radar, info_line, nb_plane);
+        else if (info_line[0][0] == 'T')
+            setup_radar(radar, info_line, nb_radar);
+        while (info_line[i] != NULL) {
+            free(info_line[i]);
+            i += 1;
+        }
+        i = 0;
     }
     free(info_line);
     return 0;

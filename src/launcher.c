@@ -13,10 +13,11 @@ int launcher(char **info)
     sfVideoMode VideoMode = {1920, 1080, 32};
 
     radar = malloc(sizeof(radar_t));
+    if (radar == NULL)
+        return 84;
     radar->window = sfRenderWindow_create(VideoMode, "My_Radar",
         sfDefaultStyle, NULL);
     radar->info = info;
-    my_show_word_array(radar->info);
     while (sfRenderWindow_isOpen(radar->window))
         analyse_event(radar);
     sfRenderWindow_close(radar->window);

@@ -9,8 +9,8 @@
     #define WINDOW_H_
 
 typedef struct plane {
-    sfVector2f pos_i;
-    sfVector2f pos_f;
+    sfVector2i pos_i;
+    sfVector2i pos_f;
     int speed;
     int delete;
 } plane_t;

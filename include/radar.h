@@ -33,5 +33,7 @@ char **recup_information(char **av);
 char *read_info(char **av);
 int send_information(radar_t *radar);
 int analyse_event(radar_t *game);
+int setup_plane(radar_t *radar, char **info_line, int nb_plane);
+int setup_radar(radar_t *radar, char **info_line, int nb_radar);
 
 #endif
