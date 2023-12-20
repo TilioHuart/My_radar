@@ -50,7 +50,8 @@ static char **len_char(const char *str)
     return arr;
 }
 
-static void last(char **arr, int *a, int *y) {
+static void last(char **arr, int *a, int *y)
+{
     arr[*y][*a] = '\0';
     *y += 1;
     *a = 0;
@@ -118,15 +119,15 @@ static int count_radar(radar_t *radar)
     return count;
 }
 
+
+
 int send_information(radar_t *radar)
 {
     char **info_line = NULL;
     int i = 0;
-    int nb_plane = 0;
-    int nb_radar = 0;
+    int nb_plane = count_plane(radar);
+    int nb_radar = count_radar(radar);
 
-    nb_plane = count_plane(radar);
-    nb_radar = count_radar(radar);
     radar->plane = malloc(sizeof(plane_t *));
     for (int y = 0; radar->info[y] != NULL; y += 1) {
         info_line = my_info_to_array(radar->info[y]);
