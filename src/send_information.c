@@ -38,8 +38,8 @@ static char **len_char(const char *str)
     for (int i = 0; str[i] != '\0'; i += 1) {
         if (ismap(str[i]) == 0 && ismap(str[i + 1]) == 0)
             len += 1;
-        else if ((ismap(str[i]) == 0 && str[i + 1] == ' ') ||
-                (ismap(str[i]) == 0 && str[i + 1] == '\0')) {
+        if ((ismap(str[i]) == 0 && str[i + 1] == ' ') ||
+            (ismap(str[i]) == 0 && str[i + 1] == '\0')) {
             len += 1;
             arr[a] = malloc(sizeof(char *) * len);
             len = 0;
@@ -119,8 +119,6 @@ static int count_radar(radar_t *radar)
     return count;
 }
 
-
-
 int send_information(radar_t *radar)
 {
     char **info_line = NULL;
@@ -133,7 +131,7 @@ int send_information(radar_t *radar)
         info_line = my_info_to_array(radar->info[y]);
         if (info_line[0][0] == 'A')
             setup_plane(radar, info_line, nb_plane);
-        else if (info_line[0][0] == 'T')
+        if (info_line[0][0] == 'T')
             setup_radar(radar, info_line, nb_radar);
         while (info_line[i] != NULL) {
             free(info_line[i]);
