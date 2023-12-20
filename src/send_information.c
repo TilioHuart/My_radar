@@ -119,6 +119,15 @@ static int count_radar(radar_t *radar)
     return count;
 }
 
+static int wash_infoline(char **info_line, int *i)
+{
+    while (info_line[*i] != NULL) {
+        free(info_line[*i]);
+        *i += 1;
+    }
+    return 0;
+}
+
 int send_information(radar_t *radar)
 {
     char **info_line = NULL;
@@ -126,17 +135,15 @@ int send_information(radar_t *radar)
     int nb_plane = count_plane(radar);
     int nb_radar = count_radar(radar);
 
-    radar->plane = malloc(sizeof(plane_t *));
+    radar->plane = malloc(sizeof(plane_t *) * nb_plane);
+    radar->tower = malloc(sizeof(tower_t *) * nb_radar);
     for (int y = 0; radar->info[y] != NULL; y += 1) {
         info_line = my_info_to_array(radar->info[y]);
         if (info_line[0][0] == 'A')
             setup_plane(radar, info_line, nb_plane);
         if (info_line[0][0] == 'T')
             setup_radar(radar, info_line, nb_radar);
-        while (info_line[i] != NULL) {
-            free(info_line[i]);
-            i += 1;
-        }
+        wash_infoline(info_line, &i);
         i = 0;
     }
     free(info_line);

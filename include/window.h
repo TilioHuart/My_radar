@@ -15,4 +15,9 @@ typedef struct plane {
     int delete;
 } plane_t;
 
+typedef struct tower {
+    sfVector2i pos;
+    int radius;
+} tower_t;
+
 #endif

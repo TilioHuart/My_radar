@@ -25,6 +25,7 @@ typedef struct radar {
     sfRenderWindow *window;
     sfEvent event;
     plane_t **plane;
+    tower_t **tower;
 } radar_t;
 
 int case_of_env(char **env, int *env_f);

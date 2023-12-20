@@ -13,7 +13,7 @@ int setup_plane(radar_t *radar, char **info_line, int nb_plane)
 
     if (i < nb_plane) {
         radar->plane[i] = malloc(sizeof(plane_t));
-        if (radar->plane[i]->pos_i.x == 0)
+        if (radar->plane[i] == NULL)
             return 84;
         radar->plane[i]->pos_i.x = my_getnbr(info_line[1]);
         radar->plane[i]->pos_i.y = my_getnbr(info_line[2]);
