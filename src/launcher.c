@@ -10,20 +10,13 @@
 int launcher(char **info)
 {
     radar_t *radar;
-    sfVideoMode VideoMode = {1920, 1080, 32};
 
     radar = malloc(sizeof(radar_t));
-    if (radar == NULL)
-        return 84;
-    radar->window = sfRenderWindow_create(VideoMode, "My_Radar",
-        sfDefaultStyle, NULL);
-    radar->info = info;
+    initialisation(radar, info);
+    send_information(radar);
     while (sfRenderWindow_isOpen(radar->window))
         analyse_event(radar);
     sfRenderWindow_close(radar->window);
-    send_information(radar);
-    free(radar->info);
-    sfRenderWindow_destroy(radar->window);
-    free(radar);
+    washing_machine(radar);
     return 0;
 }

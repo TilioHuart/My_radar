@@ -31,11 +31,13 @@ typedef struct radar {
 int radar(int ac, char **av, char **env);
 int case_of_env(char **env, int *env_f);
 int launcher(char **info);
+int initialisation(radar_t *radar, char **info);
 char **recup_information(char **av);
 char *read_info(char **av);
 int send_information(radar_t *radar);
 int analyse_event(radar_t *game);
 int setup_plane(radar_t *radar, char **info_line, int nb_plane);
 int setup_radar(radar_t *radar, char **info_line, int nb_radar);
+int washing_machine(radar_t *radar);
 
 #endif
