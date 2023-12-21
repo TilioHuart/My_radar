@@ -16,6 +16,8 @@ int main(int ac, char **av, char **env)
     if (error == 84 || ac != 2)
         return 84;
     info = recup_information(av);
+    if (info == NULL)
+        return 84;
     launcher(info);
     return 0;
 }
