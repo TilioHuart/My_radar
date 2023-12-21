@@ -28,6 +28,7 @@ typedef struct radar {
     tower_t **tower;
 } radar_t;
 
+int radar(int ac, char **av, char **env);
 int case_of_env(char **env, int *env_f);
 int launcher(char **info);
 char **recup_information(char **av);
