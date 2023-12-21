@@ -71,6 +71,8 @@ static void loop(const char *str, char **arr, int *a, int *y)
             *y += 1;
             *a = 0;
         }
+        if (str[i] == ' ')
+            *a = 0;
         if (ismap(str[i]) == 0 && str[i + 1] == '\0') {
             arr[*y][*a] = str[i];
             *a += 1;
@@ -135,8 +137,8 @@ int send_information(radar_t *radar)
     int nb_plane = count_plane(radar);
     int nb_radar = count_radar(radar);
 
-    radar->plane = malloc(sizeof(plane_t *) * nb_plane);
-    radar->tower = malloc(sizeof(tower_t *) * nb_radar);
+    radar->plane = malloc(sizeof(plane_t *) * (nb_plane + 1));
+    radar->tower = malloc(sizeof(tower_t *) * (nb_radar + 1));
     for (int y = 0; radar->info[y] != NULL; y += 1) {
         info_line = my_info_to_array(radar->info[y]);
         if (info_line[0][0] == 'A')

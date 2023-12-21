@@ -19,8 +19,7 @@ int setup_radar(radar_t *radar, char **info_line, int nb_radar)
         radar->tower[i]->pos.y = my_getnbr(info_line[2]);
         radar->tower[i]->radius = my_getnbr(info_line[3]);
         i += 1;
-    } else {
-        radar->tower[i] = NULL;
     }
+    radar->tower[nb_radar] = NULL;
     return 0;
 }

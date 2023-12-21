@@ -29,17 +29,21 @@ static char **len_char(const char *str)
     int len = 0;
     int count = 0;
     char **arr = NULL;
+    int y = 0;
 
     for (int i = 0; str[i] != '\0'; i += 1) {
         if (str[i] == '\n')
             count += 1;
-        if (ismap(str[i]) == 0)
-            len += 1;
     }
     arr = malloc(sizeof(char *) * (count + 2));
-    len /= count;
     for (int i = 0; i != count; i += 1) {
-        arr[i] = malloc(sizeof(char) * len + 7);
+        for (; str[y] != '\n'; y += 1) {
+            if (ismap(str[y]) == 0)
+                len += 1;
+        }
+        y += 1;
+        arr[i] = malloc(sizeof(char) * len + 1);
+        len = 0;
     }
     return arr;
 }

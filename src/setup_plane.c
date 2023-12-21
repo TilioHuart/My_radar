@@ -22,8 +22,7 @@ int setup_plane(radar_t *radar, char **info_line, int nb_plane)
         radar->plane[i]->speed = my_getnbr(info_line[5]);
         radar->plane[i]->delete = my_getnbr(info_line[6]);
         i += 1;
-    } else {
-        radar->plane[i] = NULL;
     }
+    radar->plane[nb_plane] = NULL;
     return 0;
 }
