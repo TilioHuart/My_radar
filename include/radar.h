@@ -19,6 +19,7 @@
     #include "fcntl.h"
     #include "unistd.h"
     #include "sys/stat.h"
+    #include "map.h"
 
 typedef struct radar {
     char **info;
@@ -26,12 +27,13 @@ typedef struct radar {
     sfEvent event;
     plane_t **plane;
     tower_t **tower;
+    map_t *map;
 } radar_t;
 
 int radar(int ac, char **av, char **env);
 int case_of_env(char **env, int *env_f);
 int launcher(char **info);
-int initialisation(radar_t *radar, char **info);
+int initialisation(radar_t *radar);
 char **recup_information(char **av);
 char *read_info(char **av);
 int send_information(radar_t *radar);
@@ -39,5 +41,6 @@ int analyse_event(radar_t *game);
 int setup_plane(radar_t *radar, char **info_line, int nb_plane);
 int setup_radar(radar_t *radar, char **info_line, int nb_radar);
 int washing_machine(radar_t *radar);
+int display_radar(radar_t *radar);
 
 #endif

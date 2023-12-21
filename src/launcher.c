@@ -12,10 +12,13 @@ int launcher(char **info)
     radar_t *radar;
 
     radar = malloc(sizeof(radar_t));
-    initialisation(radar, info);
+    radar->info = info;
     send_information(radar);
-    while (sfRenderWindow_isOpen(radar->window))
+    initialisation(radar);
+    while (sfRenderWindow_isOpen(radar->window)) {
+        display_radar(radar);
         analyse_event(radar);
+    }
     sfRenderWindow_close(radar->window);
     washing_machine(radar);
     return 0;
