@@ -52,6 +52,7 @@ static char **len_char(const char *str)
 
 static void last(char **arr, int *a, int *y)
 {
+    *a += 1;
     arr[*y][*a] = '\0';
     *y += 1;
     *a = 0;
@@ -75,7 +76,6 @@ static void loop(const char *str, char **arr, int *a, int *y)
             *a = 0;
         if (ismap(str[i]) == 0 && str[i + 1] == '\0') {
             arr[*y][*a] = str[i];
-            *a += 1;
             last(arr, a, y);
         }
     }

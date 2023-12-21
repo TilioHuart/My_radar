@@ -24,6 +24,12 @@ static int ismap(char c)
     }
 }
 
+static void find_len(char const *str, int *len, int *y)
+{
+    if (ismap(str[*y]) == 0)
+        *len += 1;
+}
+
 static char **len_char(const char *str)
 {
     int len = 0;
@@ -38,8 +44,7 @@ static char **len_char(const char *str)
     arr = malloc(sizeof(char *) * (count + 2));
     for (int i = 0; i != count; i += 1) {
         for (; str[y] != '\n'; y += 1) {
-            if (ismap(str[y]) == 0)
-                len += 1;
+            find_len(str, &len, &y);
         }
         y += 1;
         arr[i] = malloc(sizeof(char) * len + 1);
