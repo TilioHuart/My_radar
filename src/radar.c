@@ -7,6 +7,18 @@
 
 #include "radar.h"
 
+static void display_message(void)
+{
+    my_printf("-h\n");
+}
+
+static int check_h(char **av)
+{
+    if (av[1][1] == 'h' && av[1][2] == '\0')
+        display_message();
+    return 0;
+}
+
 int radar(int ac, char **av, char **env)
 {
     int env_f = 0;
@@ -15,6 +27,10 @@ int radar(int ac, char **av, char **env)
 
     if (error == 84 || ac != 2)
         return 84;
+    if (av[1][0] == '-') {
+        check_h(av);
+        return 0;
+    }
     info = recup_information(av);
     if (info == NULL)
         return 84;

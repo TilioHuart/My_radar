@@ -21,6 +21,8 @@ char **recup_information(char **av)
     char **array = NULL;
     char *map = read_info(av);
 
+    if (map == NULL)
+        return NULL;
     for (int i = 80; map[i - 1] != '\0'; i += 1)
         if (map[i] == '\0' && map[i - 1] != '\n') {
             map[i] = '\n';

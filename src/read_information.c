@@ -31,8 +31,8 @@ char *read_info(char **av)
 
     stat(av[1], &stats);
     map = malloc(sizeof(char) * stats.st_size + 1);
-    if (map == NULL)
-        return "ERROR";
+    if (map == NULL || fd == 84)
+        return NULL;
     while (read(fd, buffer, 1) != 0) {
         if (buffer[0] != 0) {
             map[i] = buffer[0];
