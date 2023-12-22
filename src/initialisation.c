@@ -9,15 +9,33 @@
 
 static int init_tower(radar_t *radar)
 {
+    sfVector2f origin;
+    sfVector2i mouse;
+    sfVector2f size;
+    sfColor color = {255, 255, 255, 0};
+
     radar->texture_tower = sfTexture_createFromFile("assets/tower.png", NULL);
     for (int i = 0; radar->tower[i] != NULL; i += 1) {
         sfSprite_setTexture(radar->tower[i]->sprite, radar->texture_tower,
                             sfTrue);
-        sfSprite_setOrigin(radar->tower[i]->sprite, (sfVector2f) {250, 250});
+
         sfSprite_setScale(radar->tower[i]->sprite, (sfVector2f)
             {(float)0.1, (float)0.1});
+        size = sfSprite_getScale(radar->tower[i]->sprite);
+        sfSprite_setOrigin(radar->tower[i]->sprite,(sfVector2f){250 , 250});
+        printf("scale = %f, scale = %f\n", size.x, size.y);
         sfSprite_setPosition(radar->tower[i]->sprite, (sfVector2f)
             {(float)radar->tower[i]->pos.x, (float)radar->tower[i]->pos.y});
+        origin = sfSprite_getPosition(radar->tower[i]->sprite);
+        mouse = sfMouse_getPositionRenderWindow(radar->window);
+        printf("mousex = %d, mousey = %d\n", mouse.x, mouse.y);
+        printf("x = %f, y = %f\n", origin.x, origin.y);
+        sfCircleShape_setPosition(radar->tower[i]->circle, origin);
+        sfCircleShape_setOrigin(radar->tower[i]->circle, (sfVector2f){radar->tower[i]->radius, radar->tower[i]->radius});
+        sfCircleShape_setFillColor(radar->tower[i]->circle, color);
+        sfCircleShape_setOutlineThickness(radar->tower[i]->circle, 3);
+        sfCircleShape_setOutlineColor(radar->tower[i]->circle, sfBlack);
+        sfCircleShape_setRadius(radar->tower[i]->circle, (float)radar->tower[i]->radius);
     }
     return 0;
 }
