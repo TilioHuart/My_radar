@@ -68,7 +68,7 @@ static int init_plane(radar_t *radar)
         sfSprite_setOrigin(radar->plane[i]->sprite, (sfVector2f){250, 250});
         sfSprite_setPosition(radar->plane[i]->sprite, (sfVector2f)
             {(float)radar->plane[i]->pos_i.x,
-             (float)radar->plane[i]->pos_i.y});
+            (float)radar->plane[i]->pos_i.y});
         init_planerectangle(radar, &i);
     }
     return 0;
