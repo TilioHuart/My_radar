@@ -32,7 +32,7 @@ static int init_tower(radar_t *radar)
                             sfTrue);
         sfSprite_setScale(radar->tower[i]->sprite, (sfVector2f)
             {(float)0.1, (float)0.1});
-        sfSprite_setOrigin(radar->tower[i]->sprite,(sfVector2f){250 , 250});
+        sfSprite_setOrigin(radar->tower[i]->sprite,(sfVector2f){250, 250});
         sfSprite_setPosition(radar->tower[i]->sprite, (sfVector2f)
             {(float)radar->tower[i]->pos.x, (float)radar->tower[i]->pos.y});
         set_towercircle(radar, &i);
