@@ -11,10 +11,13 @@ static int init_tower(radar_t *radar)
 {
     radar->texture_tower = sfTexture_createFromFile("assets/tower.png", NULL);
     for (int i = 0; radar->tower[i] != NULL; i += 1) {
-        sfSprite_setTexture(radar->tower[i]->sprite, radar->texture_tower, sfTrue);
+        sfSprite_setTexture(radar->tower[i]->sprite, radar->texture_tower,
+                            sfTrue);
         sfSprite_setOrigin(radar->tower[i]->sprite, (sfVector2f) {250, 250});
-        sfSprite_setScale(radar->tower[i]->sprite, (sfVector2f){(float)0.1, (float)0.1});
-        sfSprite_setPosition(radar->tower[i]->sprite, (sfVector2f){(float)radar->tower[i]->pos.x, (float)radar->tower[i]->pos.y});
+        sfSprite_setScale(radar->tower[i]->sprite, (sfVector2f)
+            {(float)0.1, (float)0.1});
+        sfSprite_setPosition(radar->tower[i]->sprite, (sfVector2f)
+            {(float)radar->tower[i]->pos.x, (float)radar->tower[i]->pos.y});
     }
     return 0;
 }
