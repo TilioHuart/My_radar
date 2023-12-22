@@ -30,7 +30,7 @@ int initialisation(radar_t *radar)
     radar->window = sfRenderWindow_create(VideoMode, "My_Radar",
         sfDefaultStyle, NULL);
     radar->map->texture = sfTexture_createFromFile("assets/map2.jpg", NULL);
-    radar->map->sprite =sfSprite_create();
+    radar->map->sprite = sfSprite_create();
     sfSprite_setTexture(radar->map->sprite, radar->map->texture, sfTrue);
     init_tower(radar);
     return 0;
