@@ -25,6 +25,7 @@ typedef struct radar {
     char **info;
     sfRenderWindow *window;
     sfEvent event;
+    sfTexture *texture_tower;
     plane_t **plane;
     tower_t **tower;
     map_t *map;

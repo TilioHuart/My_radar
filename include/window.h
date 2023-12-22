@@ -18,6 +18,7 @@ typedef struct plane {
 typedef struct tower {
     sfVector2i pos;
     int radius;
+    sfSprite *sprite;
 } tower_t;
 
 #endif
