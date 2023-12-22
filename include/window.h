@@ -13,6 +13,8 @@ typedef struct plane {
     sfVector2i pos_f;
     int speed;
     int delete;
+    sfSprite *sprite;
+    sfRectangleShape *rectangle;
 } plane_t;
 
 typedef struct tower {

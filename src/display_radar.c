@@ -17,5 +17,11 @@ int display_radar(radar_t *radar)
         sfRenderWindow_drawCircleShape(radar->window, radar->tower[i]->circle,
             NULL);
     }
+    for (int i = 0; radar->plane[i] != NULL; i += 1) {
+        sfRenderWindow_drawSprite(radar->window, radar->plane[i]->sprite,
+            NULL);
+        sfRenderWindow_drawRectangleShape(radar->window,
+            radar->plane[i]->rectangle, NULL);
+    }
     return 0;
 }

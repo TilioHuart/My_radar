@@ -32,8 +32,10 @@ int radar(int ac, char **av, char **env)
         return 0;
     }
     info = recup_information(av);
-    if (info == NULL)
+    if (info == NULL) {
+        write(1, "Incorrect script\n", 17);
         return 84;
+    }
     launcher(info);
     return 0;
 }
