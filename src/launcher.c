@@ -21,6 +21,7 @@ int launcher(char **info)
         analyse_event(radar);
     }
     sfRenderWindow_close(radar->window);
+    sfClock_destroy(clock);
     washing_machine(radar);
     return 0;
 }
