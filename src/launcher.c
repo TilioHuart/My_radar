@@ -10,10 +10,10 @@
 int launcher(char **info)
 {
     radar_t *radar;
+    sfClock *clock = sfClock_create();
 
     radar = malloc(sizeof(radar_t));
     radar->info = info;
-    sfClock *clock = sfClock_create();
     send_information(radar);
     initialisation(radar);
     while (sfRenderWindow_isOpen(radar->window)) {

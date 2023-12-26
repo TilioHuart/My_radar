@@ -13,9 +13,9 @@ void mvt_plane(radar_t *radar, float seconds, sfVector2f *mvt, int i)
 
     if (radar->plane[i]->disp == 0) {
         sfRenderWindow_drawSprite(radar->window, radar->plane[i]->sprite,
-                                  NULL);
+            NULL);
         sfRenderWindow_drawRectangleShape(radar->window,
-                                          radar->plane[i]->rectangle, NULL);
+            radar->plane[i]->rectangle, NULL);
         (*mvt).x = radar->plane[i]->vecteurnormal.x *
             (float)radar->plane[i]->speed * seconds;
         (*mvt).y = radar->plane[i]->vecteurnormal.y *
