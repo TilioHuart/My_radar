@@ -23,7 +23,8 @@ void wash_plane(const radar_t *radar)
         }
 }
 
-void wash_radar(const radar_t *radar) {
+void wash_radar(const radar_t *radar)
+{
     if (radar != NULL && radar->tower != NULL)
         for (int i = 0; radar->tower[i] != NULL; i += 1) {
             sfSprite_destroy(radar->tower[i]->sprite);
@@ -32,7 +33,8 @@ void wash_radar(const radar_t *radar) {
         }
 }
 
-void wash_final(radar_t *radar) {
+void wash_final(radar_t *radar)
+{
     if (radar != NULL) {
         sfTexture_destroy(radar->texture_plane);
         sfTexture_destroy(radar->texture_tower);
