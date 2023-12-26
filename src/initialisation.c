@@ -60,7 +60,7 @@ static int init_planerectangle(radar_t *radar, int *i)
 static void init_plane_mvt(const radar_t *radar, int i)
 {
     radar->plane[i]->vecteur.x = (float)radar->plane[i]->pos_f.x -
-                             (float)radar->plane[i]->pos_i.x;
+        (float)radar->plane[i]->pos_i.x;
     radar->plane[i]->vecteur.y = (float)radar->plane[i]->pos_f.y -
         (float)radar->plane[i]->pos_i.y;
     radar->plane[i]->lenght = sqrt(radar->plane[i]->vecteur.x *
