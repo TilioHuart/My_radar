@@ -20,6 +20,7 @@
     #include "unistd.h"
     #include "sys/stat.h"
     #include "map.h"
+    #include "math.h"
 
 typedef struct radar {
     char **info;
@@ -43,6 +44,6 @@ int analyse_event(radar_t *game);
 int setup_plane(radar_t *radar, char **info_line, int nb_plane);
 int setup_radar(radar_t *radar, char **info_line, int nb_radar);
 int washing_machine(radar_t *radar);
-int display_radar(radar_t *radar);
+int display_radar(radar_t *radar, sfClock *clock);
 
 #endif

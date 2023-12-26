@@ -15,6 +15,10 @@ typedef struct plane {
     int delete;
     sfSprite *sprite;
     sfRectangleShape *rectangle;
+    sfVector2f vecteur;
+    int lenght;
+    sfVector2f vecteurnormal;
+    int disp;
 } plane_t;
 
 typedef struct tower {
