@@ -31,6 +31,27 @@ void mvt_plane(radar_t *radar, float seconds, sfVector2f *mvt, int i)
     }
 }
 
+static int collision(radar_t *radar)
+{
+    sfVector2f pos;
+    sfVector2f pos2;
+
+    for (int i = 0; radar->plane[i] != NULL; i += 1) {
+        pos = sfSprite_getPosition(radar->plane[i]->sprite);
+        for (int y = 0; radar->plane[y] != NULL; y += 1) {
+            if (y != i) {
+                pos2 = sfSprite_getPosition(radar->plane[y]->sprite);
+                if (radar->plane[i]->disp == 0 && radar->plane[y]->disp == 0)
+                    if (abs(pos.x - pos2.x) < (20 / 2 + 20 / 2) && abs(pos.y - pos2.y) < (20 / 2 + 20 / 2)) {
+                        radar->plane[i]->disp = 1;
+                        radar->plane[y]->disp = 1;
+                    }
+            }
+        }
+    }
+    return 0;
+}
+
 int display_radar(radar_t *radar, sfClock *clock)
 {
     sfTime time = sfClock_getElapsedTime(clock);
@@ -48,6 +69,7 @@ int display_radar(radar_t *radar, sfClock *clock)
     if (seconds > 0.02) {
         for (int i = 0; radar->plane[i] != NULL; i += 1) {
             mvt_plane(radar, seconds, &mvt, i);
+            collision(radar);
         }
         sfClock_restart(clock);
         sfRenderWindow_display(radar->window);
