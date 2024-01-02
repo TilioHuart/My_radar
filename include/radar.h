@@ -30,6 +30,7 @@ typedef struct radar {
     sfTexture *texture_plane;
     plane_t **plane;
     tower_t **tower;
+    area_t *area;
     map_t *map;
 } radar_t;
 
