@@ -30,39 +30,37 @@ void mvt_plane(radar_t *radar, float seconds, sfVector2f *mvt, int i)
 static int assign_area(radar_t *radar)
 {
     radar->area = malloc(sizeof(area_t));
-
     radar->area->top_left.height = 1080 / 2;
     radar->area->top_left.width = 1920 / 2;
     radar->area->top_left.top = 0;
     radar->area->top_left.left = 0;
-    radar->area->top_right.height = 1080 /2;
+    radar->area->top_right.height = 1080 / 2;
     radar->area->top_right.width = 1920 / 2;
     radar->area->top_right.top = 1080 / 2;
     radar->area->top_right.left = 0;
-    radar->area->bottom_right.height = 1080 /2;
+    radar->area->bottom_right.height = 1080 / 2;
     radar->area->bottom_right.width = 1920 / 2;
     radar->area->bottom_right.top = 1080 / 2;
     radar->area->bottom_right.left = 1920 / 2;
-    radar->area->bottom_left.height = 1080 /2;
+    radar->area->bottom_left.height = 1080 / 2;
     radar->area->bottom_left.width = 1920 / 2;
     radar->area->bottom_left.top = 0;
     radar->area->bottom_left.left = 1920 / 2;
     return 0;
 }
 
-static void check_plane(const radar_t *radar, const int *i, sfVector2f *pos, int y)
+static
+void check_plane(const radar_t *radar, const int *i, sfVector2f *pos, int y)
 {
     sfVector2f pos2;
 
-    if (y != *i) {
-        pos2 = sfSprite_getPosition(radar->plane[y]->sprite);
-        if (radar->plane[*i]->disp == 0 && radar->plane[y]->disp == 0)
-            if (fabsf((*pos).x - pos2.x) < ((float)20 / 2 + (float)20 / 2) &&
-                fabsf((*pos).y - pos2.y) < ((float)20 / 2 + (float)20 / 2)) {
-                radar->plane[*i]->disp = 1;
-                radar->plane[y]->disp = 1;
-            }
-    }
+    pos2 = sfSprite_getPosition(radar->plane[y]->sprite);
+    if (radar->plane[*i]->disp == 0 && radar->plane[y]->disp == 0 && y != *i)
+        if (fabsf((*pos).x - pos2.x) < ((float) 20 / 2 + (float) 20 / 2) &&
+            fabsf((*pos).y - pos2.y) < ((float) 20 / 2 + (float) 20 / 2)) {
+            radar->plane[*i]->disp = 1;
+            radar->plane[y]->disp = 1;
+        }
 }
 
 static int check_area(radar_t *radar, sfVector2f *pos, int **i)
@@ -89,7 +87,6 @@ static int collision(radar_t *radar, int *i)
     assign_area(radar);
     pos = sfSprite_getPosition(radar->plane[*i]->sprite);
     check_area(radar, &pos, &i);
-
     pos = sfSprite_getPosition(radar->plane[*i]->sprite);
     for (int y = 0; radar->plane[y] != NULL; y += 1) {
         if (radar->plane[*i]->area == radar->plane[y]->area) {
