@@ -39,17 +39,31 @@ check_mvt_col(radar_t *radar, sfClock *clock, float seconds, sfVector2f *mvt)
     }
 }
 
+void check_display_plane(radar_t *radar, int i)
+{
+    sfRenderWindow_drawSprite(radar->window, radar->plane[i]->sprite,
+                      NULL);
+    if (radar->plane[i]->hitbox == 1)
+        sfRenderWindow_drawRectangleShape(radar->window,
+            radar->plane[i]->rectangle, NULL);
+}
+
 void display_plane(radar_t *radar)
 {
     for (int i = 0; radar->plane[i] != NULL; i += 1) {
         if (radar->plane[i]->disp == 0) {
-            sfRenderWindow_drawSprite(radar->window, radar->plane[i]->sprite,
-                NULL);
-            if (radar->plane[i]->hitbox == 1)
-                sfRenderWindow_drawRectangleShape(radar->window,
-                    radar->plane[i]->rectangle, NULL);
+            check_display_plane(radar, i);
         }
     }
+}
+
+void check_display_tower(radar_t *radar, int i)
+{
+    sfRenderWindow_drawSprite(radar->window, radar->tower[i]->sprite,
+                          NULL);
+    if (radar->tower[i]->hitbox == 1)
+        sfRenderWindow_drawCircleShape(radar->window, radar->tower[i]->circle,
+            NULL);
 }
 
 int display_radar(radar_t *radar, sfClock *clock)
@@ -61,11 +75,7 @@ int display_radar(radar_t *radar, sfClock *clock)
     sfRenderWindow_clear(radar->window, sfWhite);
     sfRenderWindow_drawSprite(radar->window, radar->map->sprite, NULL);
     for (int i = 0; radar->tower[i] != NULL; i += 1) {
-        sfRenderWindow_drawSprite(radar->window, radar->tower[i]->sprite,
-            NULL);
-        if (radar->tower[i]->hitbox == 1)
-            sfRenderWindow_drawCircleShape(radar->window, radar->tower[i]->circle,
-                NULL);
+        check_display_tower(radar, i);
     }
     check_mvt_col(radar, clock, seconds, &mvt);
     display_plane(radar);
