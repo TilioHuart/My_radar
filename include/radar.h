@@ -46,5 +46,6 @@ int setup_plane(radar_t *radar, char **info_line, int nb_plane);
 int setup_radar(radar_t *radar, char **info_line, int nb_radar);
 int washing_machine(radar_t *radar);
 int display_radar(radar_t *radar, sfClock *clock);
+int collision(radar_t *radar, int *i);
 
 #endif
