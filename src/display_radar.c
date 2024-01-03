@@ -21,8 +21,9 @@ check_mvt_col(radar_t *radar, sfClock *clock, float seconds, sfVector2f *mvt)
 
 void check_display_plane(radar_t *radar, int i)
 {
-    sfRenderWindow_drawSprite(radar->window, radar->plane[i]->sprite,
-        NULL);
+    if (radar->plane[i]->disp_s == 1)
+        sfRenderWindow_drawSprite(radar->window, radar->plane[i]->sprite,
+            NULL);
     if (radar->plane[i]->hitbox == 1)
         sfRenderWindow_drawRectangleShape(radar->window,
             radar->plane[i]->rectangle, NULL);
@@ -39,8 +40,9 @@ void display_plane(radar_t *radar)
 
 void check_display_tower(radar_t *radar, int i)
 {
-    sfRenderWindow_drawSprite(radar->window, radar->tower[i]->sprite,
-        NULL);
+    if (radar->tower[i]->disp_s == 1)
+        sfRenderWindow_drawSprite(radar->window, radar->tower[i]->sprite,
+            NULL);
     if (radar->tower[i]->hitbox == 1)
         sfRenderWindow_drawCircleShape(radar->window, radar->tower[i]->circle,
             NULL);

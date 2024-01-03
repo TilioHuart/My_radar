@@ -21,6 +21,7 @@ typedef struct plane {
     int disp;
     int area;
     int hitbox;
+    int disp_s;
 } plane_t;
 
 typedef struct tower {
@@ -29,6 +30,7 @@ typedef struct tower {
     sfSprite *sprite;
     sfCircleShape *circle;
     int hitbox;
+    int disp_s;
 } tower_t;
 
 typedef struct area {

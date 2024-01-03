@@ -21,6 +21,7 @@ int setup_radar(radar_t *radar, char **info_line, int nb_radar)
         radar->tower[i]->sprite = sfSprite_create();
         radar->tower[i]->circle = sfCircleShape_create();
         radar->tower[i]->hitbox = 1;
+        radar->tower[i]->disp_s = 1;
         i += 1;
     }
     radar->tower[nb_radar] = NULL;
