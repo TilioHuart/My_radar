@@ -63,8 +63,9 @@ int display_radar(radar_t *radar, sfClock *clock)
     for (int i = 0; radar->tower[i] != NULL; i += 1) {
         sfRenderWindow_drawSprite(radar->window, radar->tower[i]->sprite,
             NULL);
-        sfRenderWindow_drawCircleShape(radar->window, radar->tower[i]->circle,
-            NULL);
+        if (radar->tower[i]->hitbox == 1)
+            sfRenderWindow_drawCircleShape(radar->window, radar->tower[i]->circle,
+                NULL);
     }
     check_mvt_col(radar, clock, seconds, &mvt);
     display_plane(radar);

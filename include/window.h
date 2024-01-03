@@ -28,6 +28,7 @@ typedef struct tower {
     int radius;
     sfSprite *sprite;
     sfCircleShape *circle;
+    int hitbox;
 } tower_t;
 
 typedef struct area {
