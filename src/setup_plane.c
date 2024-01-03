@@ -23,6 +23,7 @@ int setup_plane(radar_t *radar, char **info_line, int nb_plane)
         radar->plane[i]->delete = my_getnbr(info_line[6]);
         radar->plane[i]->sprite = sfSprite_create();
         radar->plane[i]->rectangle = sfRectangleShape_create();
+        radar->plane[i]->hitbox = 1;
         i += 1;
     }
     radar->plane[nb_plane] = NULL;

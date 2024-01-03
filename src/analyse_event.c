@@ -14,6 +14,8 @@ int analyse_event(radar_t *game)
         case sfEvtClosed:
             sfRenderWindow_close(game->window);
             break;
+        case sfEvtKeyPressed:
+            check_hitbox(game);
         default:
             break;
     }

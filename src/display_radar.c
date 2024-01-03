@@ -45,8 +45,9 @@ void display_plane(radar_t *radar)
         if (radar->plane[i]->disp == 0) {
             sfRenderWindow_drawSprite(radar->window, radar->plane[i]->sprite,
                 NULL);
-            sfRenderWindow_drawRectangleShape(radar->window,
-                radar->plane[i]->rectangle, NULL);
+            if (radar->plane[i]->hitbox == 1)
+                sfRenderWindow_drawRectangleShape(radar->window,
+                    radar->plane[i]->rectangle, NULL);
         }
     }
 }

@@ -20,6 +20,7 @@ typedef struct plane {
     sfVector2f vecteurnormal;
     int disp;
     int area;
+    int hitbox;
 } plane_t;
 
 typedef struct tower {
