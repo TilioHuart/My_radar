@@ -7,26 +7,6 @@
 
 #include "radar.h"
 
-void mvt_plane(radar_t *radar, float seconds, sfVector2f *mvt, int i)
-{
-    sfVector2f stop;
-
-    if (radar->plane[i]->disp == 0) {
-        (*mvt).x = radar->plane[i]->vecteurnormal.x *
-            (float)radar->plane[i]->speed * seconds;
-        (*mvt).y = radar->plane[i]->vecteurnormal.y *
-            (float)radar->plane[i]->speed * seconds;
-        sfSprite_move(radar->plane[i]->sprite, (*mvt));
-        sfRectangleShape_move(radar->plane[i]->rectangle, (*mvt));
-        stop = sfSprite_getPosition(radar->plane[i]->sprite);
-        if (((*mvt).y > 0 && stop.y > (float)radar->plane[i]->pos_f.y) ||
-            ((*mvt).y < 0 && stop.y < (float)radar->plane[i]->pos_f.y) ||
-            ((*mvt).x > 0 && stop.x > (float)radar->plane[i]->pos_f.x) ||
-            ((*mvt).x < 0 && stop.x < (float)radar->plane[i]->pos_f.x))
-            radar->plane[i]->disp = 1;
-    }
-}
-
 void
 check_mvt_col(radar_t *radar, sfClock *clock, float seconds, sfVector2f *mvt)
 {
@@ -42,7 +22,7 @@ check_mvt_col(radar_t *radar, sfClock *clock, float seconds, sfVector2f *mvt)
 void check_display_plane(radar_t *radar, int i)
 {
     sfRenderWindow_drawSprite(radar->window, radar->plane[i]->sprite,
-                      NULL);
+        NULL);
     if (radar->plane[i]->hitbox == 1)
         sfRenderWindow_drawRectangleShape(radar->window,
             radar->plane[i]->rectangle, NULL);
@@ -60,7 +40,7 @@ void display_plane(radar_t *radar)
 void check_display_tower(radar_t *radar, int i)
 {
     sfRenderWindow_drawSprite(radar->window, radar->tower[i]->sprite,
-                          NULL);
+        NULL);
     if (radar->tower[i]->hitbox == 1)
         sfRenderWindow_drawCircleShape(radar->window, radar->tower[i]->circle,
             NULL);
