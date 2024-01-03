@@ -18,6 +18,8 @@ int setup_radar(radar_t *radar, char **info_line, int nb_radar)
         radar->tower[i]->pos.x = my_getnbr(info_line[1]);
         radar->tower[i]->pos.y = my_getnbr(info_line[2]);
         radar->tower[i]->radius = my_getnbr(info_line[3]);
+        radar->tower[i]->radius *= 1920;
+        radar->tower[i]->radius /= 100;
         radar->tower[i]->sprite = sfSprite_create();
         radar->tower[i]->circle = sfCircleShape_create();
         radar->tower[i]->hitbox = 1;

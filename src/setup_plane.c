@@ -7,6 +7,13 @@
 
 #include "radar.h"
 
+void setup_app(const radar_t *radar, int i)
+{
+    radar->plane[i]->hitbox = 1;
+    radar->plane[i]->disp_s = 1;
+    radar->plane[i]->area = 0;
+}
+
 int setup_plane(radar_t *radar, char **info_line, int nb_plane)
 {
     static int i = 0;
@@ -23,9 +30,7 @@ int setup_plane(radar_t *radar, char **info_line, int nb_plane)
         radar->plane[i]->delete = my_getnbr(info_line[6]);
         radar->plane[i]->sprite = sfSprite_create();
         radar->plane[i]->rectangle = sfRectangleShape_create();
-        radar->plane[i]->hitbox = 1;
-        radar->plane[i]->disp_s = 1;
-        radar->plane[i]->area = 0;
+        setup_app(radar, i);
         i += 1;
     }
     radar->plane[nb_plane] = NULL;

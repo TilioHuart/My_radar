@@ -60,6 +60,16 @@ void check_plane(const radar_t *radar, const int *i, sfVector2f *pos, int y)
         }
 }
 
+void check_radar(const radar_t *radar, const int *i, sfVector2f *pos)
+{
+    (*pos) = sfSprite_getPosition(radar->plane[*i]->sprite);
+    for (int y = 0; radar->plane[y] != NULL; y += 1) {
+        if (radar->plane[*i]->area == radar->plane[y]->area) {
+            check_plane(radar, i, pos, y);
+        }
+    }
+}
+
 int collision(radar_t *radar, int *i)
 {
     sfVector2f pos;
@@ -67,7 +77,6 @@ int collision(radar_t *radar, int *i)
     float distancex = 0;
     float distancey = 0;
     float distance;
-    float stop = 0;
 
     assign_area(radar);
     pos = sfSprite_getPosition(radar->plane[*i]->sprite);
@@ -80,11 +89,6 @@ int collision(radar_t *radar, int *i)
         if (distance <= radar->tower[y]->radius)
             return 0;
     }
-    pos = sfSprite_getPosition(radar->plane[*i]->sprite);
-    for (int y = 0; radar->plane[y] != NULL; y += 1) {
-        if (radar->plane[*i]->area == radar->plane[y]->area) {
-            check_plane(radar, i, &pos, y);
-        }
-    }
+    check_radar(radar, i, &pos);
     return 0;
 }
