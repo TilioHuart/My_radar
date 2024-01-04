@@ -43,6 +43,10 @@ static int check_area(radar_t *radar, sfVector2f *pos, int **i)
     if ((*pos).x >= (float) radar->area->top_left.width && (*pos).y >=
         (float) radar->area->top_left.height)
         radar->plane[**i]->area = 4;
+    if ((*pos).x >= 940 && (*pos).x <= 980)
+        radar->plane[**i]->line = 1;
+    if ((*pos).y >= 520 && (*pos).y <= 560)
+        radar->plane[**i]->line = 1;
     return 0;
 }
 
@@ -64,8 +68,10 @@ void check_radar(const radar_t *radar, const int *i, sfVector2f *pos)
 {
     (*pos) = sfSprite_getPosition(radar->plane[*i]->sprite);
     for (int y = 0; radar->plane[y] != NULL; y += 1) {
-        if (radar->plane[*i]->area == radar->plane[y]->area &&
-            radar->plane[*i]->spawn == 0 && radar->plane[y]->spawn == 0) {
+        if ((radar->plane[*i]->area == radar->plane[y]->area &&
+            radar->plane[*i]->spawn == 0 && radar->plane[y]->spawn == 0) ||
+                (radar->plane[*i]->line == 1 && radar->plane[y]->line == 1 &&
+                radar->plane[*i]->spawn == 0 && radar->plane[y]->spawn == 0)) {
             check_plane(radar, i, pos, y);
         }
     }

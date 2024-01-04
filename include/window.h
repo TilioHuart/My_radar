@@ -23,6 +23,7 @@ typedef struct plane {
     int hitbox;
     int disp_s;
     int spawn;
+    int line;
 } plane_t;
 
 typedef struct tower {
