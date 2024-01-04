@@ -7,8 +7,10 @@
 
 #include "radar.h"
 
-void setup_app(const radar_t *radar, int i)
+static void setup_app(const radar_t *radar, int i)
 {
+    radar->plane[i]->sprite = sfSprite_create();
+    radar->plane[i]->rectangle = sfRectangleShape_create();
     radar->plane[i]->hitbox = 1;
     radar->plane[i]->disp_s = 1;
     radar->plane[i]->area = 0;
@@ -19,6 +21,9 @@ int setup_plane(radar_t *radar, char **info_line, int nb_plane)
 {
     static int i = 0;
 
+    for (int y = 0; y != 7; y += 1)
+        if (info_line[y] == NULL)
+            return 84;
     if (i < nb_plane) {
         radar->plane[i] = malloc(sizeof(plane_t));
         if (radar->plane[i] == NULL)
@@ -29,8 +34,6 @@ int setup_plane(radar_t *radar, char **info_line, int nb_plane)
         radar->plane[i]->pos_f.y = my_getnbr(info_line[4]);
         radar->plane[i]->speed = my_getnbr(info_line[5]);
         radar->plane[i]->delete = my_getnbr(info_line[6]);
-        radar->plane[i]->sprite = sfSprite_create();
-        radar->plane[i]->rectangle = sfRectangleShape_create();
         setup_app(radar, i);
         i += 1;
     }

@@ -127,6 +127,7 @@ static int wash_infoline(char **info_line, int *i)
         free(info_line[*i]);
         *i += 1;
     }
+    free(info_line);
     return 0;
 }
 
@@ -136,18 +137,20 @@ int send_information(radar_t *radar)
     int i = 0;
     int nb_plane = count_plane(radar);
     int nb_radar = count_radar(radar);
+    int error = 0;
 
     radar->plane = malloc(sizeof(plane_t *) * (nb_plane + 1));
     radar->tower = malloc(sizeof(tower_t *) * (nb_radar + 1));
     for (int y = 0; radar->info[y] != NULL; y += 1) {
         info_line = my_info_to_array(radar->info[y]);
         if (info_line[0][0] == 'A')
-            setup_plane(radar, info_line, nb_plane);
+            error = setup_plane(radar, info_line, nb_plane);
         if (info_line[0][0] == 'T')
-            setup_radar(radar, info_line, nb_radar);
+            error = setup_radar(radar, info_line, nb_radar);
+        if (error == 84)
+            return 84;
         wash_infoline(info_line, &i);
         i = 0;
     }
-    free(info_line);
     return 0;
 }

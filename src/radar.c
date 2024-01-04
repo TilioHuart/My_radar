@@ -36,6 +36,8 @@ int radar(int ac, char **av, char **env)
         write(1, "Incorrect script\n", 17);
         return 84;
     }
-    launcher(info);
+    error = launcher(info);
+    if (error == 84)
+        return 84;
     return 0;
 }
