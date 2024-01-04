@@ -2,7 +2,7 @@
 
 ## Description
 
-My Radar is an air traffic control simulation project. This 2D visualization tool simulates air traffic, including aircraft and control towers, with specific rules and behaviors. It's written in C and offers a detailed insight into the complexities of air traffic management.
+My Radar is an air traffic control simulation project. This 2D visualization tool simulates air traffic, including aircraft and control towers, with specific rules and behaviors.
 
 ## Installation
 
