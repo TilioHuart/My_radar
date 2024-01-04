@@ -45,7 +45,6 @@ static char **len_char(const char *str)
             len = 0;
             a += 1;
         }
-        arr[a] = malloc(sizeof(char *) * 2);
     }
     return arr;
 }
@@ -127,6 +126,7 @@ static int wash_infoline(char **info_line, int *i)
         free(info_line[*i]);
         *i += 1;
     }
+    free(info_line[*i]);
     free(info_line);
     return 0;
 }

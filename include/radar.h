@@ -49,5 +49,6 @@ int display_radar(radar_t *radar, sfClock *clock);
 int collision(radar_t *radar, int *i);
 int check_hitbox(radar_t *radar);
 void mvt_plane(radar_t *radar, float seconds, sfVector2f *mvt, int i);
+int assign_area(radar_t *radar);
 
 #endif

@@ -9,7 +9,15 @@
 
 static void display_message(void)
 {
-    my_printf("-h\n");
+    my_printf("Air traffic simulation panel\n\n");
+    my_printf("USAGE\n");
+    my_printf("  ./my_radar [OPTIONS] path_to_script\n");
+    my_printf("  path_to_script\tThe path to the script file.\n\n");
+    my_printf("OPTIONS\n");
+    my_printf("  -h    \t\t print the usage and quit.\n\n");
+    my_printf("USER INTERACTIONS\n");
+    my_printf("  ‘L’ key\t\tenable/disable hitboxes and areas.\n");
+    my_printf("  ‘S’ key\t\tenable/disable sprites.\n");
 }
 
 static int check_h(char **av)

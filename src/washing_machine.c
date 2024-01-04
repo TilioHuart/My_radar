@@ -52,8 +52,9 @@ int washing_machine(radar_t *radar)
     }
     wash_plane(radar);
     wash_radar(radar);
-    if (radar != NULL && radar->area != NULL)
+    if (radar != NULL && radar->area != NULL) {
         free(radar->area);
+    }
     wash_final(radar);
     return 0;
 }

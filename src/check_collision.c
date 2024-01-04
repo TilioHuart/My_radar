@@ -7,7 +7,7 @@
 
 #include "radar.h"
 
-static int assign_area(radar_t *radar)
+int assign_area(radar_t *radar)
 {
     radar->area = malloc(sizeof(area_t));
     radar->area->top_left.height = 1080 / 2;
@@ -79,7 +79,6 @@ int collision(radar_t *radar, int *i)
     float distancey = 0;
     float distance;
 
-    assign_area(radar);
     pos = sfSprite_getPosition(radar->plane[*i]->sprite);
     check_area(radar, &pos, &i);
     for (int y = 0; radar->tower[y] != NULL; y += 1) {

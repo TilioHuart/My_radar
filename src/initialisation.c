@@ -103,5 +103,6 @@ int initialisation(radar_t *radar)
     sfSprite_setTexture(radar->map->sprite, radar->map->texture, sfTrue);
     init_tower(radar);
     init_plane(radar);
+    assign_area(radar);
     return 0;
 }
