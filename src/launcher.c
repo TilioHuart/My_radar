@@ -25,13 +25,14 @@ int launcher(char **info)
 {
     radar_t *radar = malloc(sizeof(radar_t));
     sfClock *clock = sfClock_create();
-    int error = 0;
 
     radar->info = info;
-    error = send_information(radar);
-    if (error == 84)
+    if (send_information(radar) == 84)
         return 84;
-    initialisation(radar);
+    if (initialisation(radar) == 84) {
+        washing_machine(radar);
+        return 84;
+    }
     while (sfRenderWindow_isOpen(radar->window)) {
         display_radar(radar, clock);
         analyse_event(radar);

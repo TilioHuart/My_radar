@@ -27,6 +27,8 @@ static int set_towercircle(radar_t *radar, int *i)
 static int init_tower(radar_t *radar)
 {
     radar->texture_tower = sfTexture_createFromFile("assets/tower.png", NULL);
+    if (radar->texture_tower == NULL)
+        return 84;
     for (int i = 0; radar->tower[i] != NULL; i += 1) {
         sfSprite_setTexture(radar->tower[i]->sprite, radar->texture_tower,
                             sfTrue);
@@ -76,6 +78,8 @@ static void init_plane_mvt(const radar_t *radar, int i)
 static int init_plane(radar_t *radar)
 {
     radar->texture_plane = sfTexture_createFromFile("assets/plane.png", NULL);
+    if (radar->texture_plane == NULL)
+        return 84;
     for (int i = 0; radar->plane[i] != NULL; i += 1) {
         sfSprite_setTexture(radar->plane[i]->sprite, radar->texture_plane,
                             sfTrue);
@@ -95,6 +99,7 @@ int initialisation(radar_t *radar)
 {
     sfVideoMode VideoMode = {1920, 1080, 32};
 
+    assign_area(radar);
     radar->map = malloc(sizeof(map_t));
     radar->window = sfRenderWindow_create(VideoMode, "My_Radar",
         sfDefaultStyle, NULL);
@@ -103,6 +108,8 @@ int initialisation(radar_t *radar)
     sfSprite_setTexture(radar->map->sprite, radar->map->texture, sfTrue);
     init_tower(radar);
     init_plane(radar);
-    assign_area(radar);
+    if (radar->map->texture == NULL || radar->texture_tower == NULL ||
+        radar->texture_plane == NULL)
+        return 84;
     return 0;
 }
