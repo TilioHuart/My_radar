@@ -11,7 +11,7 @@ void mvt_plane(radar_t *radar, float seconds, sfVector2f *mvt, int i)
 {
     sfVector2f stop;
 
-    if (radar->plane[i]->disp == 0) {
+    if (radar->plane[i]->disp == 0 && radar->plane[i]->spawn == 0) {
         (*mvt).x = radar->plane[i]->vecteurnormal.x *
             (float)radar->plane[i]->speed * seconds;
         (*mvt).y = radar->plane[i]->vecteurnormal.y *

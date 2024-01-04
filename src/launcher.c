@@ -15,7 +15,7 @@ static void stop_radar(radar_t *radar)
     for (int i = 0; radar->plane[i] != NULL; i += 1)
         count += 1;
     for (int i = 0; radar->plane[i] != NULL; i += 1)
-        if (radar->plane[i]->disp == 1)
+        if (radar->plane[i]->disp == 1 && radar->plane[i]->spawn == 0)
             count2 += 1;
     if (count == count2)
         sfRenderWindow_close(radar->window);

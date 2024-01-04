@@ -64,7 +64,8 @@ void check_radar(const radar_t *radar, const int *i, sfVector2f *pos)
 {
     (*pos) = sfSprite_getPosition(radar->plane[*i]->sprite);
     for (int y = 0; radar->plane[y] != NULL; y += 1) {
-        if (radar->plane[*i]->area == radar->plane[y]->area) {
+        if (radar->plane[*i]->area == radar->plane[y]->area &&
+            radar->plane[*i]->spawn == 0 && radar->plane[y]->spawn == 0) {
             check_plane(radar, i, pos, y);
         }
     }

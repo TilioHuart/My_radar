@@ -12,6 +12,7 @@ void setup_app(const radar_t *radar, int i)
     radar->plane[i]->hitbox = 1;
     radar->plane[i]->disp_s = 1;
     radar->plane[i]->area = 0;
+    radar->plane[i]->spawn = 1;
 }
 
 int setup_plane(radar_t *radar, char **info_line, int nb_plane)
