@@ -7,7 +7,6 @@
 
 #include "radar.h"
 
-
 static int ismap(char c)
 {
     if (my_isnum(c) == 0 || c == 65 || c == 84) {
@@ -120,13 +119,15 @@ static int count_radar(radar_t *radar)
     return count;
 }
 
-static int wash_infoline(char **info_line, int *i)
+static int wash_infoline(char **info_line)
 {
-    while (info_line[*i] != NULL) {
-        free(info_line[*i]);
-        *i += 1;
+    int i = 0;
+
+    while (info_line[i] != NULL) {
+        free(info_line[i]);
+        i += 1;
     }
-    free(info_line[*i]);
+    free(info_line[i]);
     free(info_line);
     return 0;
 }
@@ -134,7 +135,6 @@ static int wash_infoline(char **info_line, int *i)
 int send_information(radar_t *radar)
 {
     char **info_line = NULL;
-    int i = 0;
     int nb_plane = count_plane(radar);
     int nb_radar = count_radar(radar);
     int error = 0;
@@ -143,14 +143,15 @@ int send_information(radar_t *radar)
     radar->tower = malloc(sizeof(tower_t *) * (nb_radar + 1));
     for (int y = 0; radar->info[y] != NULL; y += 1) {
         info_line = my_info_to_array(radar->info[y]);
+        if (my_strlen(info_line[0]) != 1)
+            return 84;
         if (info_line[0][0] == 'A')
             error = setup_plane(radar, info_line, nb_plane);
         if (info_line[0][0] == 'T')
             error = setup_radar(radar, info_line, nb_radar);
         if (error == 84)
             return 84;
-        wash_infoline(info_line, &i);
-        i = 0;
+        wash_infoline(info_line);
     }
     return 0;
 }
