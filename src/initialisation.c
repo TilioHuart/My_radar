@@ -103,6 +103,7 @@ int initialisation(radar_t *radar)
     radar->map = malloc(sizeof(map_t));
     radar->window = sfRenderWindow_create(VideoMode, "My_Radar",
         sfDefaultStyle, NULL);
+    sfRenderWindow_setFramerateLimit(radar->window, 120);
     radar->map->texture = sfTexture_createFromFile("assets/map2.jpg", NULL);
     radar->map->sprite = sfSprite_create();
     sfSprite_setTexture(radar->map->sprite, radar->map->texture, sfTrue);
