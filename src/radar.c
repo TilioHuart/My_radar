@@ -20,7 +20,7 @@ static void display_message(void)
     my_printf("  ‘S’ key\t\tenable/disable sprites.\n\n");
     my_printf("MUST\n");
     my_printf("  The path to script must");
-    my_printf(" contain at least 2 planes and 2 towers\n");
+    my_printf(" contain at least 1 plane and 1 tower\n");
 }
 
 static int check_h(char **av)
