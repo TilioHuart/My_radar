@@ -36,8 +36,10 @@ void wash_radar(const radar_t *radar)
 void wash_final(radar_t *radar)
 {
     if (radar != NULL) {
-        sfTexture_destroy(radar->texture_plane);
-        sfTexture_destroy(radar->texture_tower);
+        if (radar->texture_plane != NULL)
+            sfTexture_destroy(radar->texture_plane);
+        if (radar->texture_tower != NULL)
+            sfTexture_destroy(radar->texture_tower);
         sfRenderWindow_destroy(radar->window);
         free(radar);
     }
@@ -52,7 +54,8 @@ int washing_machine(radar_t *radar)
     }
     wash_plane(radar);
     wash_radar(radar);
-    if (radar != NULL && radar->area != NULL) {
+    if (radar != NULL
+        && radar->area != NULL) {
         free(radar->area);
     }
     wash_final(radar);
