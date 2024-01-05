@@ -46,7 +46,8 @@ char **recup_information(char **av)
         return NULL;
     assign_bn(map);
     for (int i = 0; map[i] != '\0'; i += 1)
-        if ((ismap(map[i]) == 1 && map[i] != '\n') || (map[i] == '\n' && map[i + 1] == '\n'))
+        if ((ismap(map[i]) == 1 && map[i] != '\n') || (map[i] == '\n' &&
+            map[i + 1] == '\n'))
             return NULL;
     check_map(map, &count_p, &count_t);
     if (count_p < 1 || count_t < 1)
