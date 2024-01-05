@@ -7,7 +7,7 @@
 
 #include "radar.h"
 
-static void wash_info(radar_t *radar, int *i)
+static void wash_info(radar_t *radar, int const *i)
 {
     if (radar->info[*i] != NULL)
         free(radar->info[*i]);

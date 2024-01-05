@@ -7,7 +7,7 @@
 
 #include "radar.h"
 
-static int set_towercircle(radar_t *radar, int *i)
+static int set_towercircle(radar_t *radar, int const *i)
 {
     sfVector2f origin;
     sfColor color = {255, 255, 255, 0};
@@ -42,7 +42,7 @@ static int init_tower(radar_t *radar)
     return 0;
 }
 
-static int init_planerectangle(radar_t *radar, int *i)
+static int init_planerectangle(radar_t *radar, int const *i)
 {
     sfVector2f origin;
     sfColor color = {0, 0, 0, 0};

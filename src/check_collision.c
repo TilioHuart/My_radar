@@ -92,7 +92,7 @@ int collision(radar_t *radar, int *i)
         distancex = posc.x - pos.x;
         distancey = posc.y - pos.y;
         distance = sqrt(distancex * distancex + distancey * distancey);
-        if (distance <= radar->tower[y]->radius)
+        if (distance <= (float)radar->tower[y]->radius)
             return 0;
     }
     check_radar(radar, i, &pos);
